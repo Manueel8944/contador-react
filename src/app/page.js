@@ -1,25 +1,25 @@
 "use client"
 
-import Carta from "@/components/carta"
 import { useState } from "react"
 
-export default function Home(){
+export default function Home() {
+  const [contador, setContador] = useState(0)
 
-  const [titulos, setTitulos] = useState(["Titulo 1", "Titulo 2", "Titulo 3", "Titulo 4", "Titulo 5", "Titulo 6"])
-
-  function cambiarTituloCarta1(){
-    const nuevosTitulos = [...titulos]
-    nuevosTitulos[0] = "Carta 1 cambiado"
-    setTitulos(nuevosTitulos)
+  function sumar() {
+    setContador(contador + 1)
   }
 
-  return(
-    <div className="grid grid-cols-3 gap-4 m-4">
+  function restar() {
+    setContador(contador - 1)
+  }
 
-      {titulos.map((titulo) =>(
-        <Carta key={titulo} titulo={titulo} cambiarTituloCarta1={cambiarTituloCarta1}/>
-      ))}
-
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen gap-4">
+      <h1 className="text-4xl font-bold">Contador: {contador}</h1>
+      <div className="flex gap-4">
+        <button onClick={restar} className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Restar</button>
+        <button onClick={sumar} className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Sumar</button>
+      </div>
     </div>
   )
 }
